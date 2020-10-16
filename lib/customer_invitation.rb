@@ -1,29 +1,28 @@
-require 'byebug'
-require_relative 'data_reader.rb'
-require_relative 'great_circle.rb'
+require_relative 'invitation_operations.rb'
 
 class CustomerInvitation
-  OFFICE_FILEPATH = './data/intercom_office.txt'
-  CUSTOMERS_FILEPATH = './data/customers.txt'
+  include InvitationOperations
 
   attr_reader :office, :customers
 
   def initialize
-    @office = file_readin(OFFICE_FILEPATH)[0]
-    @customers = file_readin(CUSTOMERS_FILEPATH)
+    @office = file_read_in(OFFICE_FILEPATH)[0]
+    @customers = file_read_in(CUSTOMERS_FILEPATH)
   end
 
-  def show_list
-    customers_with_dist = customers_distance_info 
+  def list
+    invitations = prepare_invitations(office, customers)
+    processed_invitations = process_invitations(invitations)
+    file_write_to(OUTPUT_FILEPATH, processed_invitations)
   end
 
   private
 
-  def file_readin(file_path)
-    DataReader.new(file_path).content
+  def file_read_in(file_path)
+    FileReadWrite.new(file_path,'r').read
   end
 
-  def customers_distance_info
-    distance_info = GreatCircle.new(from: office, to: customers[0]).distance
+  def file_write_to(file_path, content)
+    FileReadWrite.new(file_path,'w').write(content)
   end
 end
