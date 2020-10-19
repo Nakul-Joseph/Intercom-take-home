@@ -1,6 +1,5 @@
-require 'byebug'
-require_relative 'file_read_write.rb'
-require_relative 'great_circle_distance.rb'
+require_relative 'file_read_write'
+require_relative 'great_circle_distance'
 
 module InvitationOperations
   OFFICE_FILEPATH = './data/intercom_office.txt'
@@ -21,6 +20,7 @@ module InvitationOperations
   end
 
   def new_customer_hash(customer, distance)
+    return unless customer[:name] && customer[:user_id]
     { name: customer[:name], user_id: customer[:user_id], distance: distance }
   end
 
@@ -31,7 +31,7 @@ module InvitationOperations
 
   def select_customers(invitations, range = 100)
     invitations.select do |customer|
-      customer.delete(:distance) if customer[:distance] <= range
+      customer.delete(:distance) if customer && customer[:distance] <= range
     end
   end
 

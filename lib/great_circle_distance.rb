@@ -1,7 +1,5 @@
-require 'byebug'
-
 class GreatCircleDistance
-  EARTH_RADIUS = 6378.137
+  EARTH_RADIUS = 6371.freeze
 
   attr_reader :lat1, :lon1, :lat2, :lon2
 
@@ -17,12 +15,11 @@ class GreatCircleDistance
   private
 
   def extract_lat_lon(resource)
-    [ resource[:latitude].to_f, 
-      resource[:longitude].to_f ].map { |deg| to_radians(deg) }
+    [ resource[:latitude], resource[:longitude] ].map { |deg| to_radians(deg) }
   end
 
   def to_radians(degrees)
-    degrees * (Math::PI/180)
+    degrees.to_f * (Math::PI/180)
   end
 
   # implemented haversine formula under 1.1 from https://en.wikipedia.org/wiki/Great-circle_distance

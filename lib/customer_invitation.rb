@@ -1,4 +1,4 @@
-require_relative 'invitation_operations.rb'
+require_relative 'invitation_operations'
 
 class CustomerInvitation
   include InvitationOperations
