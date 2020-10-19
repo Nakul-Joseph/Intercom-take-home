@@ -1,4 +1,6 @@
+# calculates distance(km) btw two geo locations on earth.
 class GreatCircleDistance
+  # using the mean earth radius.
   EARTH_RADIUS = 6371.freeze
 
   attr_reader :lat1, :lon1, :lat2, :lon2

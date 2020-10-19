@@ -1,6 +1,7 @@
 require_relative 'file_read_write'
 require_relative 'great_circle_distance'
 
+# support operations to process invitations.
 module InvitationOperations
   OFFICE_FILEPATH = './data/intercom_office.txt'
   CUSTOMERS_FILEPATH = './data/customers.txt'

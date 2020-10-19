@@ -1,3 +1,4 @@
+# prints custom exception message.
 class CustomExceptions
   attr_accessor :error
 

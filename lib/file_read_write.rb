@@ -1,6 +1,7 @@
 require 'json'
 require_relative 'custom_exceptions'
 
+# file read and write with custom changes.
 class FileReadWrite
   attr_reader :file
 

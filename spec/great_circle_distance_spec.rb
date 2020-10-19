@@ -1,5 +1,6 @@
 require 'great_circle_distance'
 require 'haversine'
+require 'byebug'
 
 RSpec.describe GreatCircleDistance do
   subject { described_class.new(from: from, to: to) }
@@ -21,7 +22,8 @@ RSpec.describe GreatCircleDistance do
   describe '#calculate' do
     it 'returns spherical distance between from and to' do
       # checks if the method returns same value as the haversine gem.
-      expect(subject.calculate).to eq(haversine_distance.round(3))
+      haversine = haversine_distance.great_circle_distance * 6371
+      expect(subject.calculate).to eq(haversine.round(3))
     end
   end
 end

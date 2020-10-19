@@ -1,5 +1,6 @@
 require_relative 'invitation_operations'
 
+# entry point class for all operations.
 class CustomerInvitation
   include InvitationOperations
 
